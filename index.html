@@ -1,90 +1,84 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="icon" href="001.jpg" type="image/jpg" />
-		<title>快樂學習網</title>
+		<title>測試</title>
 		<meta charset="UTF-8">
+		<link rel='stylesheet' href='style.css'>
 	</head>
 	<body>
-		<time>2022/5/20/20:20</time>
-		<hr>
-		<p>AAAAAAAAA<strong>BBBBBBBBBBB</strong>CCCCCCC<br>CCCasdf<i>sadsafdsDDDDDDDDDanjskdDDD</i>EEEEEEEEEEEEEEEEEE</p>
-		<h1>我是大帥哥</h1>
-		<h2>帥哥是我</h2>
-		<h3>我好帥!</h3>
-		<h4>哥只是傳說，別迷戀哥</h4>
-		<!--通常不用h5,h6-->
-		<h5>I don't know</h5>
-		<h6>water</h6>
-		<p id="hamusamu">帥哥三大要素</p>
-		<ul>
-			<li>帥</li>
-			<li>帥</li>
-			<li>帥</li>
-		</ul>
-		<p>成為帥哥的方法</p>
-		<ol>
-			<li>有錢</li>
-			<li>有鏡</li>
-			<li>有一張帥氣的臉</li>
-		</ol>
-		
-		<!--不寫_self也行-->
-		<a href="https://gorisanson.github.io/pikachu-volleyball/zh/" target="_self">這裡的皮卡丘</a><br>
-		<a href="https://gorisanson.github.io/pikachu-volleyball/zh/" target="_blank">那裡的皮卡丘</a><br>
-		
-		<!--tag 可能沒用......很顯然地沒用-->
-		<tag attribute='value" target="_blank'>OMG</tag><br>
-		
-		<img src='001.jpg' alt='sakura' title='櫻' ><figcaption>↑↑↑↑↑↑↑↑↑↑↑↑↑↑是櫻，不是幻櫻↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-		<br>
-		<img src='002.jpg' width='200'>
-		
-		<!--群組-->
-		<div>
-			<p> 111 </p>
-			<p> 222 </p>
+		<div id="val0">
+			<span id="val1">
+				值1：
+				<input type="number">
+				<select onchange='
+					var val1 = this.selectedOptions[0].innerText;
+					document.querySelector("p").innerText = val1;
+				'>
+					<option>千</option>
+					<option selected> </option>
+					<option>毫</option>
+					<option>微</option>
+					<option>奈</option>
+					<option>皮</option>
+				</select>
+			</span>
+			<br>
+			<span id="val2">
+				值2：
+				<input type="number">
+				<select onchange='
+					var val1 = this.selectedOptions[0].innerText;
+					document.querySelector("p").innerText = val1;
+				'>
+					<option>千</option>
+					<option selected> </option>
+					<option>毫</option>
+					<option>微</option>
+					<option>奈</option>
+					<option>皮</option>
+				</select>
+			</span>
 		</div>
-		<p>123456<span>78</span>9</p>
-		
-		<iframe width="560" height="315" src="https://www.youtube.com/embed/qKjKUSZHrcA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-		
-		<!--搞錯，是CSS的-->
-		<div style='background-image:url(001.jpg)'> </div><br>
-		
-		<table>
-			<tr>
-				<th>P11</th>
-				<th>P22</th>
-				<th>P33</th>
-			</tr>
-			<tr>
-				<th>P1</th>
-				<th>P2</th>
-				<th>P3</th>
-			</tr>
-			<tr>
-				<th>11</th>
-				<th>22</th>
-				<th>33</th>
-			</tr>
-		</table>
-		<a href="#hamusamu">回到"帥哥三大要素"</a>
-		<form>
-			<pre>Email:   <input type='text'><br></pre>
-			<pre>password:<input type='password'><br></pre>
-			<input type='radio' name='MALE'>MALE
-			<input type='radio' name='FEMALE'>FEMALE
-			<input type='checkbox'>What?
-			<select>
-				<option>帥</option>
-				<option>很帥</option>
-				<option>非常帥</option>
-			</select>
-			<br>
-			<textarea></textarea>
-			<br>
-			<input type='submit'>
-		</form>
+		<div>
+			<span>
+				<p></p>
+			</span>
+		</div>
+		<script>
+			let data = [
+				{name:'千',val:Math.pow(10,3)},
+				{name:' ',val:Math.pow(10,0)},
+				{name:'毫',val:Math.pow(10,-3)},
+				{name:'微',val:Math.pow(10,-6)},
+				{name:'奈',val:Math.pow(10,-9)},
+				{name:'皮',val:Math.pow(10,-12)},
+			]
+			var k;
+			document.querySelector("#val0").addEventListener("change",function(){
+				k = this.querySelector("#val1").querySelector("select").selectedOptions[0].innerText;
+				data.forEach(function(val){
+					if(val.name==k){
+						k = val.val;
+					}
+				})
+				var a = parseFloat(this.querySelector("#val1").querySelector("input").value) * k;
+				k = this.querySelector("#val2").querySelector("select").selectedOptions[0].innerText;
+				data.forEach(function(val){
+					if(val.name==k){
+						k = val.val;
+					}
+				})
+				var b = parseFloat(this.querySelector("#val2").querySelector("input").value) * k;
+				if(a > b){
+				console.log(a+"\t"+b);
+					var temp = 0;
+					temp = a;
+					a = b;
+					b = temp;
+				}
+				var c = Math.round(1000*100*((1/a)-(1/b))/(1/a))/1000;
+				document.querySelector("p").innerText="max:\t"+1/a+"\nmin:\t"+1/b+"\nresp:\t"+c+"%";
+			})
+		</script>
 	</body>
 </html>
