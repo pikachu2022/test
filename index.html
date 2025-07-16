@@ -6,14 +6,20 @@
 		<link rel='stylesheet' href='style.css'>
 	</head>
 	<body>
-		<div id="val0">
-			<span id="val1">
-				值1：
-				<input type="number">
-				<select onchange='
-					var val1 = this.selectedOptions[0].innerText;
-					document.querySelector("p").innerText = val1;
-				'>
+		<div id="val0" style="
+			display: flex;
+			align-items: center;
+		">
+			<span id="val1" style="
+				width: 50%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			">
+				數據1：
+				<span class="inp">
+				<input type="number" value="1">
+				<select>
 					<option>千</option>
 					<option selected> </option>
 					<option>毫</option>
@@ -21,15 +27,44 @@
 					<option>奈</option>
 					<option>皮</option>
 				</select>
+				A
+				</span>
+				<span class="inp">
+				<input type="number" value="1">
+				<select>
+					<option>千</option>
+					<option selected> </option>
+					<option>毫</option>
+					<option>微</option>
+					<option>奈</option>
+					<option>皮</option>
+				</select>
+				V
+				</span>
+				<span class="inp">
+				<input type="number" value="1" disabled readonly>
+				<select disabled>
+					<option>千</option>
+					<option selected> </option>
+					<option>毫</option>
+					<option>微</option>
+					<option>奈</option>
+					<option>皮</option>
+				</select>
+				Ω
+				</span>
 			</span>
 			<br>
-			<span id="val2">
-				值2：
-				<input type="number">
-				<select onchange='
-					var val1 = this.selectedOptions[0].innerText;
-					document.querySelector("p").innerText = val1;
-				'>
+			<span id="val2" style="
+				width: 50%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			">
+				數據2：
+				<span class="inp">
+				<input type="number" value="1">
+				<select>
 					<option>千</option>
 					<option selected> </option>
 					<option>毫</option>
@@ -37,10 +72,36 @@
 					<option>奈</option>
 					<option>皮</option>
 				</select>
+				A
+				</span>
+				<span class="inp">
+				<input type="number" value="1">
+				<select>
+					<option>千</option>
+					<option selected> </option>
+					<option>毫</option>
+					<option>微</option>
+					<option>奈</option>
+					<option>皮</option>
+				</select>
+				V
+				</span>
+				<span class="inp">
+				<input type="number" value="1" disabled readonly>
+				<select disabled>
+					<option>千</option>
+					<option selected> </option>
+					<option>毫</option>
+					<option>微</option>
+					<option>奈</option>
+					<option>皮</option>
+				</select>
+				Ω
+				</span>
 			</span>
 		</div>
 		<div>
-			<span>
+			<span id="show">
 				<p></p>
 			</span>
 		</div>
@@ -53,31 +114,64 @@
 				{name:'奈',val:Math.pow(10,-9)},
 				{name:'皮',val:Math.pow(10,-12)},
 			]
-			var k;
+			var k1,k2,k3,k4;
 			document.querySelector("#val0").addEventListener("change",function(){
-				k = this.querySelector("#val1").querySelector("select").selectedOptions[0].innerText;
+				k1 = this.querySelector("#val1").querySelectorAll("select")[0].selectedOptions[0].innerText;
 				data.forEach(function(val){
-					if(val.name==k){
-						k = val.val;
+					if(val.name==k1){
+						k1 = val.val;
 					}
 				})
-				var a = parseFloat(this.querySelector("#val1").querySelector("input").value) * k;
-				k = this.querySelector("#val2").querySelector("select").selectedOptions[0].innerText;
+				var a = parseFloat(this.querySelector("#val1").querySelectorAll("input")[0].value) * k1;
+				k2 = this.querySelector("#val1").querySelectorAll("select")[1].selectedOptions[0].innerText;
 				data.forEach(function(val){
-					if(val.name==k){
-						k = val.val;
+					if(val.name==k2){
+						k2 = val.val;
 					}
 				})
-				var b = parseFloat(this.querySelector("#val2").querySelector("input").value) * k;
-				if(a > b){
-				console.log(a+"\t"+b);
+				var d = parseFloat(this.querySelector("#val1").querySelectorAll("input")[1].value) * k2;
+				
+				k3 = this.querySelector("#val2").querySelectorAll("select")[0].selectedOptions[0].innerText;
+				data.forEach(function(val){
+					if(val.name==k3){
+						k3 = val.val;
+					}
+				})
+				var b = parseFloat(this.querySelector("#val2").querySelectorAll("input")[0].value) * k3;
+				k4 = this.querySelector("#val2").querySelectorAll("select")[1].selectedOptions[0].innerText;
+				data.forEach(function(val){
+					if(val.name==k4){
+						k4 = val.val;
+					}
+				})
+				var e = parseFloat(this.querySelector("#val2").querySelectorAll("input")[1].value) * k4;
+				a = Math.round(1000*d/a)/1000;
+				document.querySelector("#val1").querySelectorAll("select")[2].querySelectorAll("option")[0].selected = true;
+				data.forEach(function(val,index){
+					if(val.val>=k2/k1){
+						document.querySelector("#val1").querySelectorAll("select")[2].querySelectorAll("option")[index].selected = true;
+					}
+				})
+				this.querySelector("#val1").querySelectorAll("input")[2].value = a;
+				b = Math.round(1000*e/b)/1000;
+				document.querySelector("#val2").querySelectorAll("select")[2].querySelectorAll("option")[0].selected = true;
+				data.forEach(function(val,index){
+					if(val.val>=k4/k3){
+						document.querySelector("#val2").querySelectorAll("select")[2].querySelectorAll("option")[index].selected = true;
+					}
+				})
+				this.querySelector("#val2").querySelectorAll("input")[2].value = b;
+				if(a < b){
 					var temp = 0;
 					temp = a;
 					a = b;
 					b = temp;
+					temp = d;
+					d = e;
+					e = temp;
 				}
-				var c = Math.round(1000*100*((1/a)-(1/b))/(1/a))/1000;
-				document.querySelector("p").innerText="max:\t"+1/a+"\nmin:\t"+1/b+"\nresp:\t"+c+"%";
+				var c = Math.round(1000*100*(a-b)/a)/1000;
+				document.querySelector("#show").querySelector("p").innerText="max:\t"+a+"\nmin:\t"+b+"\nresp:\t"+c+"%";
 			})
 		</script>
 	</body>
