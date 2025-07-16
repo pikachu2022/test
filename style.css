@@ -10,3 +10,21 @@ input[type=number]::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+html{
+	font-size: 30px;
+}
+input{
+	width: 25%;
+	font-size: 30px;
+}
+select{
+	font-size: 30px;
+}
+span{
+    display: flex;
+    justify-content: space-around;
+}
+span.inp{
+	display: flex;
+    justify-content: center;
+}
