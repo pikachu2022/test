@@ -12,36 +12,18 @@
 				<span class="inp">
 				<input type="number" onfocus="this.select()" value="1">
 				<select>
-					<option>千</option>
-					<option selected> </option>
-					<option>毫</option>
-					<option>微</option>
-					<option>奈</option>
-					<option>皮</option>
 				</select>
 				A
 				</span>
 				<span class="inp">
 				<input type="number" onfocus="this.select()" value="1">
 				<select>
-					<option>千</option>
-					<option selected> </option>
-					<option>毫</option>
-					<option>微</option>
-					<option>奈</option>
-					<option>皮</option>
 				</select>
 				V
 				</span>
 				<span class="inp">
 				<input type="number" onfocus="this.select()" value="1" disabled readonly>
 				<select disabled>
-					<option>千</option>
-					<option selected> </option>
-					<option>毫</option>
-					<option>微</option>
-					<option>奈</option>
-					<option>皮</option>
 				</select>
 				Ω
 				</span>
@@ -52,36 +34,18 @@
 				<span class="inp">
 				<input type="number" onfocus="this.select()" value="1">
 				<select>
-					<option>千</option>
-					<option selected> </option>
-					<option>毫</option>
-					<option>微</option>
-					<option>奈</option>
-					<option>皮</option>
 				</select>
 				A
 				</span>
 				<span class="inp">
 				<input type="number" onfocus="this.select()" value="1">
 				<select>
-					<option>千</option>
-					<option selected> </option>
-					<option>毫</option>
-					<option>微</option>
-					<option>奈</option>
-					<option>皮</option>
 				</select>
 				V
 				</span>
 				<span class="inp">
 				<input type="number" onfocus="this.select()" value="1" disabled readonly>
 				<select disabled>
-					<option>千</option>
-					<option selected> </option>
-					<option>毫</option>
-					<option>微</option>
-					<option>奈</option>
-					<option>皮</option>
 				</select>
 				Ω
 				</span>
@@ -95,13 +59,27 @@
 		</div>
 		<script>
 			let data = [
-				{name:'千',val:Math.pow(10,3)},
-				{name:' ',val:Math.pow(10,0)},
-				{name:'毫',val:Math.pow(10,-3)},
-				{name:'微',val:Math.pow(10,-6)},
-				{name:'奈',val:Math.pow(10,-9)},
-				{name:'皮',val:Math.pow(10,-12)},
+				{name:'T',val:Math.pow(10,12)},
+				{name:'G',val:Math.pow(10,9)},
+				{name:'M',val:Math.pow(10,6)},
+				{name:'k',val:Math.pow(10,3)},
+				{name:'　',val:Math.pow(10,0)},
+				{name:'m',val:Math.pow(10,-3)},
+				{name:'µ',val:Math.pow(10,-6)},
+				{name:'n',val:Math.pow(10,-9)},
+				{name:'p',val:Math.pow(10,-12)},
+				{name:'f',val:Math.pow(10,-15)},
 			]
+			let data_name;
+			data.forEach(function(val){
+				if(val.val==1)
+				data_name+="<option selected>"+val.name+"</option>";
+				else
+				data_name+="<option>"+val.name+"</option>";
+			});
+			document.querySelectorAll("select").forEach(function(val){
+				val.insertAdjacentHTML("beforeend",data_name);
+			});
 			var k1,k2,k3,k4;
 			document.querySelector("#val0").addEventListener("change",function(){
 				k1 = this.querySelector("#val1").querySelectorAll("select")[0].selectedOptions[0].innerText;
@@ -109,14 +87,14 @@
 					if(val.name==k1){
 						k1 = val.val;
 					}
-				})
+				});
 				var a = parseFloat(this.querySelector("#val1").querySelectorAll("input")[0].value) * k1;
 				k2 = this.querySelector("#val1").querySelectorAll("select")[1].selectedOptions[0].innerText;
 				data.forEach(function(val){
 					if(val.name==k2){
 						k2 = val.val;
 					}
-				})
+				});
 				var d = parseFloat(this.querySelector("#val1").querySelectorAll("input")[1].value) * k2;
 				
 				k3 = this.querySelector("#val2").querySelectorAll("select")[0].selectedOptions[0].innerText;
@@ -124,14 +102,14 @@
 					if(val.name==k3){
 						k3 = val.val;
 					}
-				})
+				});
 				var b = parseFloat(this.querySelector("#val2").querySelectorAll("input")[0].value) * k3;
 				k4 = this.querySelector("#val2").querySelectorAll("select")[1].selectedOptions[0].innerText;
 				data.forEach(function(val){
 					if(val.name==k4){
 						k4 = val.val;
 					}
-				})
+				});
 				var e = parseFloat(this.querySelector("#val2").querySelectorAll("input")[1].value) * k4;
 				a = Math.round(1000*d/a)/1000;
 				document.querySelector("#val1").querySelectorAll("select")[2].querySelectorAll("option")[0].selected = true;
@@ -139,7 +117,7 @@
 					if(val.val>=k2/k1){
 						document.querySelector("#val1").querySelectorAll("select")[2].querySelectorAll("option")[index].selected = true;
 					}
-				})
+				});
 				this.querySelector("#val1").querySelectorAll("input")[2].value = a;
 				b = Math.round(1000*e/b)/1000;
 				document.querySelector("#val2").querySelectorAll("select")[2].querySelectorAll("option")[0].selected = true;
@@ -147,7 +125,7 @@
 					if(val.val>=k4/k3){
 						document.querySelector("#val2").querySelectorAll("select")[2].querySelectorAll("option")[index].selected = true;
 					}
-				})
+				});
 				this.querySelector("#val2").querySelectorAll("input")[2].value = b;
 				if(a < b){
 					var temp = 0;
