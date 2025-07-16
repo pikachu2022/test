@@ -11,13 +11,18 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 html{
-	font-size: 30px;
+	height: 95%;
+	font-size: 60px;
+}
+body{
+	height: 100%;
 }
 input{
-	width: 25%;
-	font-size: 30px;
+	width: 70%;
+	font-size: 60px;
 }
 select{
+	width: 20%;
 	font-size: 30px;
 }
 span{
@@ -27,4 +32,17 @@ span{
 span.inp{
 	display: flex;
     justify-content: center;
+}
+#val0{
+    height: 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+#val1, #val2{
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
