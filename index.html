@@ -82,50 +82,51 @@
 			});
 			var k1,k2,k3,k4;
 			document.querySelector("#val0").addEventListener("change",function(){
-				k1 = this.querySelector("#val1").querySelectorAll("select")[0].selectedOptions[0].innerText;
+				k1 = this.querySelector("#val1").querySelectorAll("select")[0].selectedOptions[0].innerText;//數據1：安培倍數
 				data.forEach(function(val){
 					if(val.name==k1){
 						k1 = val.val;
 					}
 				});
-				var a = parseFloat(this.querySelector("#val1").querySelectorAll("input")[0].value) * k1;
-				k2 = this.querySelector("#val1").querySelectorAll("select")[1].selectedOptions[0].innerText;
+				var a = parseFloat(this.querySelector("#val1").querySelectorAll("input")[0].value) * k1;	//數據1：安培
+				k2 = this.querySelector("#val1").querySelectorAll("select")[1].selectedOptions[0].innerText;//數據1：伏特倍數
 				data.forEach(function(val){
 					if(val.name==k2){
 						k2 = val.val;
 					}
 				});
-				var d = parseFloat(this.querySelector("#val1").querySelectorAll("input")[1].value) * k2;
+				var d = parseFloat(this.querySelector("#val1").querySelectorAll("input")[1].value) * k2;	//數據1：伏特
 				
-				k3 = this.querySelector("#val2").querySelectorAll("select")[0].selectedOptions[0].innerText;
+				k3 = this.querySelector("#val2").querySelectorAll("select")[0].selectedOptions[0].innerText;//數據2：安培倍數
 				data.forEach(function(val){
 					if(val.name==k3){
 						k3 = val.val;
 					}
 				});
-				var b = parseFloat(this.querySelector("#val2").querySelectorAll("input")[0].value) * k3;
-				k4 = this.querySelector("#val2").querySelectorAll("select")[1].selectedOptions[0].innerText;
+				var b = parseFloat(this.querySelector("#val2").querySelectorAll("input")[0].value) * k3;	//數據2：安培
+				k4 = this.querySelector("#val2").querySelectorAll("select")[1].selectedOptions[0].innerText;//數據2：伏特倍數
 				data.forEach(function(val){
 					if(val.name==k4){
 						k4 = val.val;
 					}
 				});
-				var e = parseFloat(this.querySelector("#val2").querySelectorAll("input")[1].value) * k4;
-				a = Math.round(1000*d/a)/1000;
-				document.querySelector("#val1").querySelectorAll("select")[2].querySelectorAll("option")[0].selected = true;
+				var e = parseFloat(this.querySelector("#val2").querySelectorAll("input")[1].value) * k4;	//數據2：伏特
+				
+				a = Math.round(1000*d/a)/1000;																//數據1：電阻
+				/*document.querySelector("#val1").querySelectorAll("select")[2].querySelectorAll("option")[0].selected = true;
 				data.forEach(function(val,index){
 					if(val.val>=k2/k1){
 						document.querySelector("#val1").querySelectorAll("select")[2].querySelectorAll("option")[index].selected = true;
 					}
-				});
+				});*/
 				this.querySelector("#val1").querySelectorAll("input")[2].value = a;
-				b = Math.round(1000*e/b)/1000;
-				document.querySelector("#val2").querySelectorAll("select")[2].querySelectorAll("option")[0].selected = true;
+				b = Math.round(1000*e/b)/1000;																//數據2：電阻
+				/*document.querySelector("#val2").querySelectorAll("select")[2].querySelectorAll("option")[0].selected = true;
 				data.forEach(function(val,index){
 					if(val.val>=k4/k3){
 						document.querySelector("#val2").querySelectorAll("select")[2].querySelectorAll("option")[index].selected = true;
 					}
-				});
+				});*/
 				this.querySelector("#val2").querySelectorAll("input")[2].value = b;
 				if(a < b){
 					var temp = 0;
